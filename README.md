@@ -1,2 +1,2 @@
-# Road-Accident-Data-Analysis
-This is a personal project where Road Accident Data has been Analyzed and visualized
+# SQL Data Exploration
+This a project on data exploration using SQL.
