@@ -1,1 +1,10 @@
+Covid-19 Deaths is a project on SQL data exploration. 
+The Source of the Data is Our World in Data website (https://ourworldindata.org/coronavirus).
+The data dates back from 8th January 2020 to 26th July 2023.
+The data contains 26 columns and 329044 rows.
+
+The data explorations seek to answer the following questions
+1. How many deaths per continent
+2.
+
 
