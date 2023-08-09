@@ -1,3 +1,4 @@
+--This code returns the data ordered by columns 3 and 4
 select *
 from PortfolioProject..CovidDeaths
 order by 3,4
@@ -12,9 +13,7 @@ Select location, date, total_cases, new_cases, total_deaths, population
 From PortfolioProject..CovidDeaths
 Order by 1,2
 
--- Looking at Total Cases and Total Deaths
--- Wanted to divide total_deats by total_cases but brought an error
--- the division would have showed the likelyhood of dying after contracting Covid
+-- Looking at Total Cases and Total Deaths in kenya ordered by columns 1 and then 2
 
 Select location, date, total_cases, total_deaths, 
 From PortfolioProject..CovidDeaths
@@ -58,7 +57,6 @@ Group by continent
 Order by highest_death_count desc
 
 --Global Numbers
--- Failed again to divide by null
 
 Select date, SUM(new_cases), SUM(cast(new_deaths as int)), SUM(cast(new_deaths as int))/SUM(cast(new_cases as int))*100 as DeathPercentage
 From PortfolioProject..CovidDeaths
@@ -76,3 +74,13 @@ Join PortfolioProject..CovidVacinnations vac
 	and dea.date = vac.date
 Where dea.continent is not null
 Order by 2,3
+
+--This code checks whether there are any nulls in the total deaths column
+SELECT total_deaths
+FROM PortfolioProject..CovidDeaths
+WHERE ISNUMERIC(total_deaths) = 0;
+
+--this code ensure that Null variables are excluded and only not null values are considered in the calculation.
+SELECT MAX(total_deaths)
+FROM PortfolioProject..CovidDeaths
+WHERE location = 'World' AND total_deaths IS NOT NULL;
