@@ -5,6 +5,7 @@ Skills used:
 1. Converting Data types using CAST() function
 2. Performing Calculations on the data
 3. Aggregate functions
+4. Use of CASE control structure
 
 In this Exploration, I used cast often to change the data type from nvarchar to those types that calculations won't run into an error
 */
@@ -87,12 +88,27 @@ Join PortfolioProject..CovidVacinnations vac
 Where dea.continent is not null
 Order by 2,3
 
---This code checks whether there are any nulls in the total deaths column
-SELECT total_deaths
+---- Looking at countries with the Highest infection rate compared to the population.
+-- The query shows that Cyprus has the highest infection count to population. 73% of Cyprus's population has been infected with Covid 19. San Marino
+	--comes second with 72%
+SELECT location, population, MAX(CAST(total_cases AS INT)) as HighestInfectionCount,
+(MAX(CAST(total_cases AS FLOAT))/CAST(population as FLOAT))*100 as PersonInfectedPercentage
 FROM PortfolioProject..CovidDeaths
-WHERE ISNUMERIC(total_deaths) = 0;
+GROUP BY location, population
+ORDER BY PersonInfectedPercentage DESC
 
---this code ensures that Null variables are excluded and only not null values are considered in the calculation.
-SELECT MAX(total_deaths)
+--Check all new cases by date, and percentage of new deaths based on New Cases.
+	--This query shows that 30th March 2023 had the highest number of Deaths compared to New cases.
+SELECT date,
+       SUM(new_cases) as NewCases,
+       SUM(CAST(new_deaths as Float)) as NewDeaths,
+       CASE
+           WHEN SUM(CAST(new_cases AS Float)) = 0 THEN NULL
+           ELSE ROUND(SUM(CAST(new_deaths as Float)) / NULLIF(SUM(CAST(new_cases AS Float)), 0) * 100, 3)
+       END as DeathPercentage
 FROM PortfolioProject..CovidDeaths
-WHERE location = 'World' AND total_deaths IS NOT NULL;
+WHERE continent is not NULL
+GROUP BY date
+ORDER BY DeathPercentage DESC
+
+
