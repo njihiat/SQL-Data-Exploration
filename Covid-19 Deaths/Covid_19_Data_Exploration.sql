@@ -28,6 +28,7 @@ Order by 1,2
 Select location, date, total_cases, total_deaths, (CAST(total_deaths AS DECIMAL)/CAST(total_cases AS DECIMAL)) as DeathPercentage
 From PortfolioProject..CovidDeaths
 Where location like '%Kenya%'
+	-- The %% are used to search any string character with the word Kenya in it.
 Order by 1,2
 
 --looking at Total Cases vs population. This shows a 0.636% of the population affected as of 26th July 2023
