@@ -5,9 +5,13 @@ The data dates back from 8th January 2020 to 26th July 2023.
 The data contains 26 columns and 329044 rows.
 
 The data explorations seek to answer the following questions
-1. How many deaths per region
-2.Total deaths per country and region
-3. Total cases per country and region
-4. 
+1. How many deaths per region?
+2. What is the Total number of deaths per country and region?
+3. What are the Total cases per country and region?
+4. How do Vacinations compare to population  and deaths?
+5. What is the infection rate?
+6. What is the death percentage compare to new cases?
+
+The Project seeks to describe this data and tell a story using the numbers
 
 
